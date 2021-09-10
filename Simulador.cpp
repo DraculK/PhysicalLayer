@@ -11,6 +11,7 @@ void AplicacaoTransmissora (void) {
 }
 
 void CamadaDeAplicacaoTransmissora (string mensagem) {
+	string aux;
 	int quadro [mensagem.size()];
     for(int i = 0; i<mensagem.size(); i++){
         aux = std::bitset<8>(mensagem[i]).to_string();

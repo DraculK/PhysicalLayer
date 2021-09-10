@@ -11,6 +11,16 @@ void AplicacaoTransmissora (void) {
 }
 
 void CamadaDeAplicacaoTransmissora (string mensagem) {
+	int quadro [mensagem.size()];
+    for(int i = 0; i<mensagem.size(); i++){
+        aux = std::bitset<8>(mensagem[i]).to_string();
+        // cout << aux <<endl;
+        quadro[i] = stoi(aux);
+    }
+    
+    for(int i = 0; i<mensagem.size(); i++){
+        // cout << quadro[i] <<endl;
+    }
 	
 	CamdaFisicaTransmissora(quadro);
 }

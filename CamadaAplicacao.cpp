@@ -22,7 +22,7 @@ vector<int> StringToBit(string mensagem){
     mensagemBit += bitset<8>(_char).to_string();
   }
 
-  tamanho = mensagemBit.length();
+  int tamanho = mensagemBit.length();
   //cout << mensagemBit << endl;
 
   for(int i = 0; i < tamanho; i++){
@@ -39,7 +39,7 @@ vector<int> StringToBit(string mensagem){
     cout << quadro[i];
   }
 
-  CamadaFisicaTransmissora(quadro)
+  CamadaFisicaTransmissora(quadro);
 }
 
 string BitToString(vector<int> quadro){
@@ -51,6 +51,6 @@ void CamadaDeAplicacaoReceptora(vector<int> quadro){
   AplicacaoReceptora(mensagem);
 }
 
-void AplicacaoReceptora(mensagem) {
+void AplicacaoReceptora(string mensagem) {
   cout << "A mensagem recebida foi: " << mensagem << endl;
 }

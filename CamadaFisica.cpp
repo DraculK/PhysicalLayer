@@ -1,4 +1,5 @@
-#include "CamadaFisica.hpp"
+#include "CamadaFisica.h"
+#include "CamadaAplicacao.h" 
 
 void CamadaFisicaTransmissora(vector<int> quadro) {
   int tipoDeCodificacao = 0;
@@ -15,7 +16,7 @@ void CamadaFisicaTransmissora(vector<int> quadro) {
       fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBipolar(quadro);
       break;
   }
-  MeioDeComunicacao(fluxoBrutoDeBits)
+  MeioDeComunicacao(fluxoBrutoDeBits);
 }
 
 vector<int> CamadaFisicaTransmissoraCodificacaoBinaria(vector<int> quadro){
@@ -34,7 +35,7 @@ void MeioDeComunicacao (vector<int> fluxoBrutoDeBits) {
 	vector<int> fluxoBrutoDeBitsPontoA;
 	vector<int> fluxoBrutoDeBitsPontoB;
 
-	while(i = 0; i< fluxoBrutoDeBitsPontoA.size(); i++){
+	for(int i = 0; i< fluxoBrutoDeBitsPontoA.size(); i++){
 		fluxoBrutoDeBitsPontoB.push_back(fluxoBrutoDeBitsPontoA.at(i));
 	}
 
@@ -70,12 +71,4 @@ vector<int> CamadaFisicaReceptoraCodificacaoManchester(vector<int> quadro){
 
 vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int> quadro){
 
-}
-
-void CamadaDeAplicacaoReceptora (int quadro[]) {
-	AplicacaoReceptora(mensagem);
-}
-
-void AplicacaoReceptora (string mensagem) {
-	cout << "A mensagem recebida foi: " << mensagem <<endl;
 }

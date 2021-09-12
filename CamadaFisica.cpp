@@ -69,6 +69,6 @@ vector<int> CamadaFisicaReceptoraCodificacaoManchester(vector<int> quadro){
 
 }
 
-vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int> quadro){
+vector<int> CamadaFisicaReceptoraCodificacaoBipolar(vector<int> quadro){
 
 }

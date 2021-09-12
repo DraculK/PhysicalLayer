@@ -1,8 +1,8 @@
 #include "CamadaFisica.h"
 
-void AplicacaoTransmissora ();
+void AplicacaoTransmissora();
 
-void CamadaDeAplicacaoTransmissora (string);
+void CamadaDeAplicacaoTransmissora(string);
 
 void AplicacaoReceptora(string);
 

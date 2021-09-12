@@ -1,4 +1,5 @@
-#include "camadaAplicacao.h"
+#include "CamadaAplicacao.h"
+#include <vector>
 
 void AplicacaoTransmissora() {
   string mensagem;
@@ -10,7 +11,6 @@ void AplicacaoTransmissora() {
 
 void CamadaDeAplicacaoTransmissora(string mensagem) {
   vector<int> quadro = StringToBit(mensagem);
-
   CamadaFisicaTransmissora(quadro);
 }
 
@@ -39,7 +39,7 @@ vector<int> StringToBit(string mensagem){
     cout << quadro[i];
   }
 
-  CamadaFisicaTransmissora(quadro);
+  return quadro;
 }
 
 string BitToString(vector<int> quadro){

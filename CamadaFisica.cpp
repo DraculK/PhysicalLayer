@@ -1,75 +1,75 @@
-void CamadaFisicaTransmissora (int quadro[]) {
-	int tipoDeCodificacao = 0;
-	int fluxoBrutoDeBits [];
+#include "CamadaFisica.hpp"
 
-	switch (tipoDeCodificacao) {
-		case 0:
-			fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBinaria(quadro);
-			break;
-		case 1:
-			fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
-			break;
-		case 2:
-			fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBipolar(quadro);
-			break;
-	}
+void CamadaFisicaTransmissora(vector<int> quadro) {
+  int tipoDeCodificacao = 0;
+  vector<int> fluxoBrutoDeBits;
 
-	MeioDeComunicacao(fluxoBrutoDeBits);
+  switch(tipoDeCodificacao) {
+    case 0: //codificacao binaria
+      fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBinaria(quadro);
+      break;
+    case 1: //codificacao manchester
+      fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
+      break;
+    case 2: //codificacao bipolar
+      fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBipolar(quadro);
+      break;
+  }
+  MeioDeComunicacao(fluxoBrutoDeBits)
 }
 
-int [] CamadaFisicaTransmissoraCodificacaoBinaria (int quadro[]) {
-	//implementar método
+vector<int> CamadaFisicaTransmissoraCodificacaoBinaria(vector<int> quadro){
+
 }
 
-int [] CamadaFisicaTransmissoraCodificacaoManchester (int quadro[]) {
-	//implementar método
+vector<int> CamadaFisicaTransmissoraCodificacaoManchester(vector<int> quadro){
+	
 }
 
-int [] CamadaFisicaTransmissoraCodificacaoBipolar (int quadro[]) {
-	//implementar método
+vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int> quadro){
+	
 }
 
-void MeioDeComunicacao (int fluxoBrutoDeBits []) {
-	int fluxoBrutoDeBitsPontoA[], fluxoBrutoDeBitsPontoB;
+void MeioDeComunicacao (vector<int> fluxoBrutoDeBits) {
+	vector<int> fluxoBrutoDeBitsPontoA;
+	vector<int> fluxoBrutoDeBitsPontoB;
 
-	fluxoBrutoDeBitsPontoA = fluxoBrutoDeBits;
-
-	while (fluxoBrutoDeBitsPontoB.lenght != fluxoBrutoDeBitsPontoA) {
-		fluxoBrutoDeBitsPontoB += fluxoBrutoDeBitsPontoA;
+	while(i = 0; i< fluxoBrutoDeBitsPontoA.size(); i++){
+		fluxoBrutoDeBitsPontoB.push_back(fluxoBrutoDeBitsPontoA.at(i));
 	}
 
 	CamadaFisicaReceptora(fluxoBrutoDeBitsPontoB);
 }
 
-void CamadaFisicaReceptora (int quadro[]) {
+void CamadaFisicaReceptora (vector<int> quadro) {
 	int tipoDeCodificacao = 0;
-	int fluxoBrutoDeBits [];
+	vector<int> fluxoBrutoDeBits;
 
 	switch (tipoDeCodificacao) {
 		case 0:
-			fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBinaria(quadro);
+			fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBinaria(quadro);
 			break;
 		case 1:
-			fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
+			fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoManchester(quadro);
 			break;
 		case 2:
-			fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBipolar(quadro);
+			fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBipolar(quadro);
 			break;
 	}
 
 	CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
 }
 
-int [] CamadaFisicaReceptoraCodificacaoBinaria (int quadro[]) {
-	//implementar método
+vector<int> CamadaFisicaReceptoraCodificacaoBinaria(vector<int> quadro){
+
 }
 
-int [] CamadaFisicaReceptoraCodificacaoManchester (int quadro[]) {
-	//implementar método
+vector<int> CamadaFisicaReceptoraCodificacaoManchester(vector<int> quadro){
+
 }
 
-int [] CamadaFisicaReceptoraCodificacaoBipolar (int quadro[]) {
-	//implementar método
+vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int> quadro){
+
 }
 
 void CamadaDeAplicacaoReceptora (int quadro[]) {

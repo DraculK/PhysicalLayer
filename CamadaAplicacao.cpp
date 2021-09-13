@@ -18,8 +18,8 @@ vector<int> StringToBit(string mensagem){
   vector<int> quadro;
   string mensagemBit;
   
-  for(char &_char : mensagem) {
-    mensagemBit += bitset<8>(_char).to_string();
+  for(int i = 0; i<mensagem.size(); i++) {
+    mensagemBit += std::bitset<8>(mensagem[i]).to_string();
   }
 
   int tamanho = mensagemBit.length();
@@ -38,6 +38,8 @@ vector<int> StringToBit(string mensagem){
   for(int i = 0; i < tamanho; i++){
     cout << quadro[i];
   }
+
+  cout << endl;
 
   return quadro;
 }

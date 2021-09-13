@@ -7,11 +7,11 @@ using namespace std;
 
 void CamadaFisicaTransmissora (vector<int>); //V
 
-vector<int> CamadaFisicaTransmissoraCodificacaoBinaria(vector<int>); //V
+void CamadaFisicaTransmissoraCodificacaoBinaria(vector<int>&); //V
 
 vector<int> CamadaFisicaTransmissoraCodificacaoManchester(vector<int>); 
 
-vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int>); 
+void CamadaFisicaTransmissoraCodificacaoBipolar(vector<int>&); 
 
 void MeioDeComunicacao (vector<int>); 
 

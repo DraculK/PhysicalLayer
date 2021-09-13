@@ -2,6 +2,7 @@
 #include <iostream>
 #include <bitset> 
 #include <vector>
+#include <sstream>
 
 using namespace std;
 

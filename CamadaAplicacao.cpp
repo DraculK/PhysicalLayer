@@ -23,7 +23,8 @@ vector<int> StringToBit(string mensagem){
   }
 
   int tamanho = mensagemBit.length();
-  //cout << mensagemBit << endl;
+  cout << "A mensagem em binário é: ";
+  cout << mensagemBit << endl;
 
   for(int i = 0; i < tamanho; i++){
     if (mensagemBit[i] == 48){
@@ -35,18 +36,36 @@ vector<int> StringToBit(string mensagem){
     }
   }
 
-  for(int i = 0; i < tamanho; i++){
-    cout << quadro[i];
-  }
+  //for(int i = 0; i < tamanho; i++){
+  //  cout << quadro[i];
+  //}
 
-  cout << endl;
+  //cout << endl;
 
   return quadro;
 }
 
-// string BitToString(vector<int> quadro){
+string BitToString(vector<int> quadro){
+  string mensagem, final;
+  vector<bitset<8>> conversor;
 
-// }
+  for(int i = 0; i < quadro.size(); i++){
+    mensagem += to_string(quadro[i]);
+    
+  }
+    stringstream sstream(mensagem);
+    while (sstream.good())
+    {
+        bitset<8> bits;
+        sstream >> bits;
+        final += char(bits.to_ulong());
+    }
+  cout << "O texto decodificado é: ";
+  cout << final << endl;
+  return final;
+
+  cout << final << endl;
+}
 
 // void CamadaDeAplicacaoReceptora(vector<int> quadro){
 //   string mensagem = BitToString(quadro);

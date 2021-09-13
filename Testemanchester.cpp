@@ -1,7 +1,7 @@
 /* Este arquivo é apenas um modelo, vai ser apagado posteriormente*/
 #include <iostream>
 
-int main() {
+int manchester() {
 	int bit[8] = {0, 1, 0, 1, 0, 0, 1, 1};
 	int manchester[16];
 	int clock = 1;

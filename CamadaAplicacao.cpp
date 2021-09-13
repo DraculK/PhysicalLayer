@@ -42,15 +42,15 @@ vector<int> StringToBit(string mensagem){
   return quadro;
 }
 
-string BitToString(vector<int> quadro){
+// string BitToString(vector<int> quadro){
 
-}
+// }
 
-void CamadaDeAplicacaoReceptora(vector<int> quadro){
-  string mensagem = BitToString(quadro);
-  AplicacaoReceptora(mensagem);
-}
+// void CamadaDeAplicacaoReceptora(vector<int> quadro){
+//   string mensagem = BitToString(quadro);
+//   AplicacaoReceptora(mensagem);
+// }
 
-void AplicacaoReceptora(string mensagem) {
-  cout << "A mensagem recebida foi: " << mensagem << endl;
-}
+// void AplicacaoReceptora(string mensagem) {
+//   cout << "A mensagem recebida foi: " << mensagem << endl;
+// }

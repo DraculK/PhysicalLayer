@@ -38,7 +38,7 @@ void printar(vector<int> bit){
 	std::cout << "\n" << std::endl;
 }
 
-int main() {
+int bipolar() {
 	
 	vector<int> bit;
 	bit.insert(bit.end(), {0, 1, 0, 1, 0, 0, 1, 1});

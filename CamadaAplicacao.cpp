@@ -71,8 +71,6 @@ string BitToString(vector<int> quadro){
   cout << "O texto decodificado é: ";
   cout << final << endl;
   return final;
-
-  cout << final << endl;
 }
 
 // void CamadaDeAplicacaoReceptora(vector<int> quadro){

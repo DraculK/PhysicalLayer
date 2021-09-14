@@ -5,6 +5,7 @@
 void CamadaFisicaTransmissora(vector<int> quadro) {
   int tipoDeCodificacao = 1;
   vector<int> fluxoBrutoDeBits;
+  vector<int> msgFinal;
 
   switch(tipoDeCodificacao) {
     case 0: //codificacao binaria
@@ -13,16 +14,23 @@ void CamadaFisicaTransmissora(vector<int> quadro) {
 			break;
     case 1: //codificacao manchester
       fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
-      cout << "case1" <<endl;
-
+      cout << "Codificação Manchester é: ";
       for(int i = 0; i< fluxoBrutoDeBits.size(); i++){
         cout << fluxoBrutoDeBits[i];
+      }
+      cout << "\n";
+
+      msgFinal = CamadaFisicaReceptoraCodificacaoManchester(fluxoBrutoDeBits);
+      cout << "Após a decodificação fica: ";
+      for(int i = 0; i< msgFinal.size(); i++){
+        cout << msgFinal[i];
       }
       cout << "\n";
 
 			break;
     case 2: //codificacao bipolar
 			CamadaFisicaTransmissoraCodificacaoBipolar(quadro);
+      cout << "Codificação Bipolar :" <<endl;
       for(int i = 0; i< quadro.size(); i++){
         cout << quadro[i];
       }
@@ -108,9 +116,22 @@ void MeioDeComunicacao (vector<int> fluxoBrutoDeBits) {
 
 // }
 
-// vector<int> CamadaFisicaReceptoraCodificacaoManchester(vector<int> quadro){
+vector<int> CamadaFisicaReceptoraCodificacaoManchester(vector<int> manchester){
+  int i, clock = 0;
+  vector<int> quadro;
+	for(i = 0; i < manchester.size(); i++){
+		if((clock % 2) == 1){ /* simulando um clock */
+			if(manchester[i] == 0){
+				quadro.push_back(1);
+			}else if(manchester[i] == 1){
+				quadro.push_back(0);
+			}
+		}
+		clock++;
+	}
+  return quadro;
 
-// }
+}
 
 // vector<int> CamadaFisicaReceptoraCodificacaoBipolar(vector<int> quadro){
 

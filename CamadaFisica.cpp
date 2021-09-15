@@ -6,7 +6,7 @@ const int valorBipolar = 1;
 
 void CamadaFisicaTransmissora(vector<int> quadro) {
   int tipoDeCodificacao;
-  vector<int> fluxoBrutoDeBits, ff;
+  vector<int> fluxoBrutoDeBits, fluxoBinario, fluxoManchester;
   vector<int> msgFinal;
 
   cout << "---------------------------------" << endl;
@@ -20,21 +20,21 @@ void CamadaFisicaTransmissora(vector<int> quadro) {
 
   switch(tipoDeCodificacao-1) {
 
-    // Codificacao binaria
+    // Codificacao Binaria
     case 0: 
       fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBinaria(quadro);
       cout << "Codificação Binaria é: ";
       Imprimir(fluxoBrutoDeBits);
 		break;
 
-    // Codificacao manchester
+    // Codificacao Manchester
     case 1:
       fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
       cout << "Codificação Manchester é: ";
       Imprimir(fluxoBrutoDeBits);
 		break;
 
-    // Codificacao bipolar
+    // Codificacao Bipolar
     case 2:
 			fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBipolar(quadro);
       cout << "Codificação Bipolar: ";
@@ -43,18 +43,23 @@ void CamadaFisicaTransmissora(vector<int> quadro) {
 
     // Utilizando todas as codificações implementadas
     case 3:
-      fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
-      cout << "Codificação Manchester é: ";
-      Imprimir(fluxoBrutoDeBits);
+      fluxoBinario = CamadaFisicaTransmissoraCodificacaoBinaria(quadro);
+      cout << "Codificação Binaria é: ";
+      Imprimir(fluxoBinario);
 
-      ff = CamadaFisicaTransmissoraCodificacaoBipolar(fluxoBrutoDeBits);
+      fluxoManchester = CamadaFisicaTransmissoraCodificacaoManchester(quadro);
+      cout << "Codificação Manchester é: ";
+      Imprimir(fluxoManchester);
+
+      fluxoBrutoDeBits = CamadaFisicaTransmissoraCodificacaoBipolar(fluxoManchester);
       cout << "Codificação Bipolar: ";
-      Imprimir(ff);
+      Imprimir(fluxoBrutoDeBits);
     break;
   }
   MeioDeComunicacao(fluxoBrutoDeBits, tipoDeCodificacao);
 }
 
+// Função utilizada para imprimir nossos dados no momento em que é chamado
 void Imprimir(vector<int> quadro){
   for(int i = 0; i< quadro.size(); i++){
     cout << quadro[i];
@@ -67,6 +72,7 @@ vector<int> CamadaFisicaTransmissoraCodificacaoBinaria(vector<int> quadro){
   return quadro;
 }
 
+// Implementação da porta XOR para codificação manchester
 void CodManchester(vector<int> bit, vector<int>& manchester, int clock, int indice){
   if(clock == 0 && bit[indice] == 0){
 		manchester.push_back(0);
@@ -79,6 +85,8 @@ void CodManchester(vector<int> bit, vector<int>& manchester, int clock, int indi
 	}
 }
 
+// Codificação Manchester com simulação de um clock, 
+// recebe e retorna um vetor de inteiros
 vector<int> CamadaFisicaTransmissoraCodificacaoManchester(vector<int> quadro){
 	vector<int> manchester;
   int i, clock = 0;
@@ -91,6 +99,8 @@ vector<int> CamadaFisicaTransmissoraCodificacaoManchester(vector<int> quadro){
   return manchester;
 }
 
+// Codificação Bipolar,
+// recebe e retorna um vetor de inteiros
 vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int> quadro){
  	int i, aux = 0;
   for(i = 0; i < quadro.size(); i++){
@@ -120,34 +130,42 @@ void MeioDeComunicacao (vector<int> fluxoBrutoDeBits, int tipoDeCodificacao) {
 }
 
 void CamadaFisicaReceptora (vector<int> quadro, int tipoDeCodificacao) {
-	vector<int> fluxoBrutoDeBits, ff;
+	vector<int> fluxoBrutoDeBits, fluxoBipolar, fluxoManchester;
 	switch (tipoDeCodificacao-1) {
+
+    // Decodificacao Binaria
 		case 0:
 			fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBinaria(quadro);
       cout << "Decodificação Binaria é: ";
       Imprimir(fluxoBrutoDeBits);
 		break;
+
+    // Decodificacao Manchester
 		case 1:
 			fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoManchester(quadro);
       cout << "Decodificação Manchester é: ";
       Imprimir(fluxoBrutoDeBits);
 		break;
+
+    // Decodificacao Bipolar
 		case 2:
 			fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBipolar(quadro);
       cout << "Decodificação Bipolar é: ";
       Imprimir(fluxoBrutoDeBits);
-			break;
+		break;
+
+    // Decodificacao de todos
     case 3:
-      // fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBinaria(quadro);
-      // cout << "Decodificação Binaria é: ";
-      // Imprimir(fluxoBrutoDeBits);
-
-      ff = CamadaFisicaReceptoraCodificacaoBipolar(quadro);
+      fluxoBipolar = CamadaFisicaReceptoraCodificacaoBipolar(quadro);
       cout << "Decodificação Bipolar é: ";
-      Imprimir(ff);
+      Imprimir(fluxoBipolar);
 
-      fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoManchester(ff);
+      fluxoManchester = CamadaFisicaReceptoraCodificacaoManchester(fluxoBipolar);
       cout << "Decodificação Manchester é: ";
+      Imprimir(fluxoManchester);
+
+      fluxoBrutoDeBits = CamadaFisicaReceptoraCodificacaoBinaria(fluxoManchester);
+      cout << "Decodificação Binaria é: ";
       Imprimir(fluxoBrutoDeBits);
     break;
 	}
@@ -158,6 +176,8 @@ vector<int> CamadaFisicaReceptoraCodificacaoBinaria(vector<int> quadro){
   return quadro;
 }
 
+// Implementação da camada receptora da codificação Manchester,
+// recebe e retorna um vetor de inteiros
 vector<int> CamadaFisicaReceptoraCodificacaoManchester(vector<int> manchester){
   int i, clock = 0;
   vector<int> quadro;
@@ -175,6 +195,8 @@ vector<int> CamadaFisicaReceptoraCodificacaoManchester(vector<int> manchester){
 
 }
 
+// Implementação da camada receptora da codificação Bipolar,
+// recebe e retorna um vetor de inteiros
 vector<int> CamadaFisicaReceptoraCodificacaoBipolar(vector<int> quadro){
   int i = 0;
   for(i = 0; i < quadro.size(); i++){

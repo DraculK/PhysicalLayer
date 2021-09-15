@@ -4,7 +4,7 @@
 void AplicacaoTransmissora() {
   string mensagem;
   cout << "Digite uma mensagem:" << endl;
-  cin >> mensagem; 
+  getline(cin, mensagem); 
 
   CamadaDeAplicacaoTransmissora(mensagem);
 }
@@ -17,6 +17,8 @@ void CamadaDeAplicacaoTransmissora(string mensagem) {
 vector<int> StringToBit(string mensagem){
   vector<int> quadro;
   string mensagemBit;
+
+  cout << mensagem << endl;
   
   //para fazer a conversão, utilizamos bitset para conseguir transformar nossa mensagem em um binário no formato de string.
   for(int i = 0; i<mensagem.size(); i++) {
@@ -73,11 +75,11 @@ string BitToString(vector<int> quadro){
   return final;
 }
 
-// void CamadaDeAplicacaoReceptora(vector<int> quadro){
-//   string mensagem = BitToString(quadro);
-//   AplicacaoReceptora(mensagem);
-// }
+void CamadaDeAplicacaoReceptora(vector<int> quadro){
+  string mensagem = BitToString(quadro);
+  AplicacaoReceptora(mensagem);
+}
 
-// void AplicacaoReceptora(string mensagem) {
-//   cout << "A mensagem recebida foi: " << mensagem << endl;
-// }
+void AplicacaoReceptora(string mensagem) {
+  cout << "A mensagem recebida foi: " << mensagem << endl;
+}

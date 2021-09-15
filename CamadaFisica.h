@@ -14,9 +14,9 @@ vector<int> CamadaFisicaTransmissoraCodificacaoManchester(vector<int>);
 
 vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int>); 
 
-void MeioDeComunicacao (vector<int>); 
+void MeioDeComunicacao (vector<int>, int); 
 
-void CamadaFisicaReceptora (vector<int>); 
+void CamadaFisicaReceptora (vector<int>, int);
 
 vector<int> CamadaFisicaReceptoraCodificacaoBinaria(vector<int>); 
 

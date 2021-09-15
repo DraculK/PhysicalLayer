@@ -5,18 +5,20 @@
 const int valorBipolar = 1;
 
 void CamadaFisicaTransmissora(vector<int> quadro) {
-  int tipoDeCodificacao;
+  int tipoDeCodificacao = 0;
   vector<int> fluxoBrutoDeBits, fluxoBinario, fluxoManchester;
   vector<int> msgFinal;
 
-  cout << "---------------------------------" << endl;
-  cout << "Escolha o tipo de transmissão: " << endl;
-  cout << "1 - Codificação Binária" << endl;
-  cout << "2 - Codificação Manchester" << endl;
-  cout << "3 - Codificação Bipolar" << endl;
-  cout << "4 - Todos" << endl;
-  cout << "---------------------------------" << endl;
-  cin >> tipoDeCodificacao;
+  while(tipoDeCodificacao < 1 || tipoDeCodificacao > 4){
+    cout << "---------------------------------" << endl;
+    cout << "Escolha o tipo de transmissão: " << endl;
+    cout << "1 - Codificação Binária" << endl;
+    cout << "2 - Codificação Manchester" << endl;
+    cout << "3 - Codificação Bipolar" << endl;
+    cout << "4 - Todos" << endl;
+    cout << "---------------------------------" << endl;
+    cin >> tipoDeCodificacao;
+  }
 
   switch(tipoDeCodificacao-1) {
 

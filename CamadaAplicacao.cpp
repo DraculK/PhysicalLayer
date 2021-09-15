@@ -2,9 +2,11 @@
 #include <vector>
 
 void AplicacaoTransmissora() {
-  string mensagem;
-  cout << "Digite uma mensagem:" << endl;
-  getline(cin, mensagem); 
+  string mensagem = "";
+  while(mensagem == ""){
+    cout << "Digite uma mensagem:" << endl;
+    getline(cin, mensagem); 
+  }
 
   CamadaDeAplicacaoTransmissora(mensagem);
 }

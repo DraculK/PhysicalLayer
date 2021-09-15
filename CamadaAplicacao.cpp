@@ -18,7 +18,7 @@ vector<int> StringToBit(string mensagem){
   vector<int> quadro;
   string mensagemBit;
 
-  cout << mensagem << endl;
+  //cout << mensagem << endl;
   
   //para fazer a conversão, utilizamos bitset para conseguir transformar nossa mensagem em um binário no formato de string.
   for(int i = 0; i<mensagem.size(); i++) {
@@ -70,8 +70,8 @@ string BitToString(vector<int> quadro){
     sstream >> paraBits;
     final += char(paraBits.to_ulong());
   }
-  cout << "O texto decodificado é: ";
-  cout << final << endl;
+  //cout << "O texto decodificado é: ";
+  //cout << final << endl;
   return final;
 }
 

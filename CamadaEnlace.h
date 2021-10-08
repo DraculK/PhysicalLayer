@@ -1,22 +1,18 @@
 #include "CamadaFisica.h" 
 
 //TRANSMISSÃO
-vector<int> CamadaEnlaceDadosTransmissora(vector<int>);
+void CamadaEnlaceDadosTransmissora(vector<int>);
 
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramento (vector<int>);
 
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int>);
-
-vector<int> CamadaDeEnlanceTransmissoraEnquadramento(vector<int>);
-
-vector<int> CamadaDeEnlanceTransmissoraControleDeErro(vector<int>);
 
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vector<int>);
 
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int>);
 
 //RECEPÇÃO
-vector<int> CamadaEnlaceDadosReceptora(vector<int>);
+void CamadaEnlaceDadosReceptora(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramento(vector<int>);
 

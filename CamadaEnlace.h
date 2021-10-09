@@ -1,4 +1,5 @@
-#include "CamadaFisica.h" 
+#include "CamadaFisica.h"
+#include "CamadaAplicacao.h"
 
 //TRANSMISSÃO
 void CamadaEnlaceDadosTransmissora(vector<int>);

@@ -17,7 +17,7 @@ void CamadaEnlaceDadosReceptora(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramento(vector<int>);
 
-vector<int> CamadaDeEnlaceReceptoraControleDeErro(vector<int>);
+vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<int>);
 

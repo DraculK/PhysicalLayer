@@ -10,9 +10,38 @@ void CamadaEnlaceDadosTransmissora(vector<int> quadro){
 }
 
 void CamadaEnlaceDadosReceptora(vector<int> quadro){
-  vector<int> quadroCorrigido = CamadaEnlaceDadosTransmissoraControleDeErro(quadro);
+  vector<int> quadroCorrigido = CamadaEnlaceDadosReceptoraControleDeErro(quadro);
 
-  vector<int> quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramento(quadroCorrigido);
+  vector<int> quadroEnquadrado = CamadaEnlaceDadosReceptoraEnquadramento(quadroCorrigido);
 
   CamadaDeAplicacaoReceptora(quadroEnquadrado);
+}
+
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramento(vector<int> quadro){
+  int tipoDeEnquadramento = 0;
+  vector<int> quadroEnquadrado;
+
+  switch(tipoDeEnquadramento) {
+    case 0:
+      quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
+      break;
+    case 1:
+      quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
+      break;
+  }
+  return quadroEnquadrado;
+}
+
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vector<int> quadro){
+  vector<int> quadroBytes;
+
+  //Conta os bytes
+  bitset<8> howmany = ((quadro.size())/8);
+
+  //Número de bytes no quadro
+  for(int i = 7; i>=0; i--){
+    quadroBytes.push_back(howmany[i]);
+  }
+  quadroBytes.insert(quadroBytes.end(), quadro.begin(), quadro.end());
+  return quadroBytes;
 }

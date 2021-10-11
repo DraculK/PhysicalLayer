@@ -45,3 +45,24 @@ vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vecto
   quadroBytes.insert(quadroBytes.end(), quadro.begin(), quadro.end());
   return quadroBytes;
 }
+
+vector<int> CamadaEnlaceDadosReceptoraEnquadramento(vector<int> quadro){
+  int tipoDeEnquadramento = 0;
+  vector<int> quadroDesenquadrado;
+
+  switch(tipoDeEnquadramento) {
+    case 0:
+      quadroDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(quadro);
+      break;
+    case 1:
+      quadroDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(quadro);
+      break;
+  }
+
+  return quadroDesenquadrado;
+}
+
+vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<int> quadro){
+  vector<int> quadroFinal(quadro.begin() + 8, quadro.begin() + quadro.size());
+  return quadroFinal;
+}

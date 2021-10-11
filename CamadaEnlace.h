@@ -2,18 +2,18 @@
 #include "CamadaAplicacao.h"
 
 //TRANSMISSÃO
-void CamadaEnlaceDadosTransmissora(vector<int>);
+void CamadaEnlaceDadosTransmissora(vector<int>); //feito
 
-vector<int> CamadaEnlaceDadosTransmissoraEnquadramento (vector<int>);
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramento (vector<int>); //feito
 
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int>);
 
-vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vector<int>);
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vector<int>); //feito.
 
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int>);
 
 //RECEPÇÃO
-void CamadaEnlaceDadosReceptora(vector<int>);
+void CamadaEnlaceDadosReceptora(vector<int>); //feito.
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramento(vector<int>);
 

@@ -1,5 +1,6 @@
 #include "CamadaFisica.h"
 #include "CamadaAplicacao.h" 
+#include "CamadaEnlace.h"
 #include <typeinfo>
 
 const int valorBipolar = 1;
@@ -175,7 +176,7 @@ void CamadaFisicaReceptora (vector<int> quadro, int tipoDeCodificacao) {
       Imprimir(fluxoBrutoDeBits);
     break;
 	}
-	CamadaDeAplicacaoReceptora(fluxoBrutoDeBits);
+  CamadaEnlaceDadosReceptora(fluxoBrutoDeBits);
 }
 
 vector<int> CamadaFisicaReceptoraCodificacaoBinaria(vector<int> quadro){

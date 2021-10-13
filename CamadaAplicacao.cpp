@@ -1,4 +1,5 @@
 #include "CamadaAplicacao.h"
+#include "CamadaEnlace.h"
 #include <vector>
 
 void AplicacaoTransmissora() {
@@ -13,7 +14,7 @@ void AplicacaoTransmissora() {
 
 void CamadaDeAplicacaoTransmissora(string mensagem) {
   vector<int> quadro = StringToBit(mensagem);
-  CamadaFisicaTransmissora(quadro);
+  CamadaEnlaceDadosTransmissora(quadro);
 }
 
 vector<int> StringToBit(string mensagem){

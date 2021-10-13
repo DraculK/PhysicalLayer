@@ -106,3 +106,43 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<i
   vector<int> quadroFinal(quadro.begin() + 8, quadro.begin() + quadro.size());
   return quadroFinal;
 }
+
+vector<int> CamadaDeEnlaceReceptoraControleDeErro(vector<int> quadro){
+  int tipoDeErro = 0;
+  vector<int> quadroFinal;
+  switch(tipoDeErro){
+    case 0:
+      quadroFinal = CamadaDeEnlaceDadosReceptoraControleDeErroBitParidadePar(quadro);
+      break;
+    case 1:
+      quadroFinal = CamadaDeEnlaceDadosReceptoraControleDeErroBitParidadeImpar(quadro);
+      break;
+    case 2:
+      quadroFinal = CamadaDeEnlaceDadosReceptoraControleDeErroBitRedundanciaCiclica(quadro);
+      break;
+    case 3:
+      quadroFinal = CamadaDeEnlaceDadosReceptoraControleDeErroBitHamming(quadro);
+      break;
+  }
+  return quadroFinal;
+}
+
+vector<int> CamadaDeEnlaceDadosReceptoraControleDeErroBitParidadePar(vector<int> quadro){
+  vector<int> quadroFinal = quadro;
+  return quadroFinal;
+}
+
+vector<int> CamadaDeEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int> quadro){
+  vector<int> quadroFinal = quadro;
+  return quadroFinal;
+}
+
+vector<int> CamadaDeEnlaceDadosReceptoraControleDeErroBitRedundanciaCiclica(vector<int> quadro){
+  vector<int> quadroFinal = quadro;
+  return quadroFinal;
+}
+
+vector<int> CamadaDeEnlaceDadosReceptoraControleDeErroBitHamming(vector<int> quadro){
+  vector<int> quadroFinal = quadro;
+  return quadroFinal;
+}

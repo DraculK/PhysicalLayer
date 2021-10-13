@@ -62,6 +62,46 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramento(vector<int> quadro){
   return quadroDesenquadrado;
 }
 
+// utilizado para inserir Byte em algum Vetor
+void InsereByte(vector<int> *vetor, unsigned char byte){
+  unsigned char aux = 0x80;
+  int i = 0;
+  for(int i = 0; i < 8; i++) {
+    if((byte << i) & aux) {
+      vetor->push_back(1);
+    } else {
+      vetor->push_back(0);
+    }
+  }
+}
+
+vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vector<int> quadro){
+  unsigned char FLAG = 0x0F;
+  unsigned char ESC = 0xF0;
+  unsigned char byte;
+  int aux = 0; // Verifica se o último caracter foi de escape
+  vector<int> quadroFinal;
+
+  for(int i = 0; i < quadro.size(); i += 8) {
+    byte = 0x00;
+    for(int j = 0; j < 8; j++) {
+      byte |= (char)(quadro.at(i + 7 - j) << j);
+    }
+    if(aux == 1) {
+      InsereByte(&quadroFinal, byte);
+      aux = 0;
+    } else if(byte == FLAG) {
+      continue;
+    } else if (byte == ESC) {
+      aux = 1;
+      continue;
+    } else {
+      InsereByte(&quadroFinal, byte);
+    }
+  }
+  return quadroFinal;
+}
+
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<int> quadro){
   vector<int> quadroFinal(quadro.begin() + 8, quadro.begin() + quadro.size());
   return quadroFinal;

@@ -18,6 +18,7 @@ void CamadaEnlaceDadosReceptora(vector<int> quadro){
 }
 
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramento(vector<int> quadro){
+  
   vector<int> quadroEnquadrado;
 
   quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
@@ -49,11 +50,47 @@ vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vecto
   quadroBytes.insert(quadroBytes.end(), quadro.begin(), quadro.end());
   return quadroBytes;
 }
-
-vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int> quadro){
-  return quadro;
+// utilizado para inserir Byte em algum Vetor
+void InsereByte(vector<int> *vetor, unsigned char byte){
+  unsigned char aux = 0x80;
+  int i = 0;
+  for(int i = 0; i < 8; i++) {
+    if((byte << i) & aux) {
+      vetor->push_back(1);
+    } else {
+      vetor->push_back(0);
+    }
+  }
 }
 
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int> quadro){
+    unsigned char FLAG = 0x0F;
+    unsigned char ESC = 0xF0;
+    unsigned char byte;
+    std::vector<int> quadro_end;
+
+    // Flag para indicar inicio do quadro
+    InsereByte(&quadro_end, FLAG);
+    int lenght = quadro.size();
+    for(int i = 0; i < lenght; i += 8) {
+        byte = 0x00;
+        // Extrai um byte do vetor
+        for(int j = 0; j < 8; j++) {
+            byte |= (char)(quadro.at(i + 7 - j) << j);
+        }
+        // Insere caracter de escape ESC caso
+        // um byte coincida com o byte de FLAG ou de ESC
+        if((byte == FLAG) || (byte == ESC)) {
+            InsereByte(&quadro_end, ESC);
+        }
+        InsereByte(&quadro_end, byte);
+    }
+    // Flag para indicar fim do quadro
+    InsereByte(&quadro_end, FLAG);
+
+    return quadro_end;
+}
+  
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
   return quadroFinal;
@@ -80,18 +117,6 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramento(vector<int> quadro){
   return quadroDesenquadrado;
 }
 
-// utilizado para inserir Byte em algum Vetor
-void InsereByte(vector<int> *vetor, unsigned char byte){
-  unsigned char aux = 0x80;
-  int i = 0;
-  for(int i = 0; i < 8; i++) {
-    if((byte << i) & aux) {
-      vetor->push_back(1);
-    } else {
-      vetor->push_back(0);
-    }
-  }
-}
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vector<int> quadro){
   unsigned char FLAG = 0x0F;

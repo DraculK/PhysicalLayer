@@ -10,6 +10,8 @@ vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int>);
 
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(vector<int>); //feito.
 
+void InsereByte(vector<int> *vetor, unsigned char byte);
+
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int>);
 
 //RECEPÇÃO

@@ -24,3 +24,16 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int>);
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vector<int>);
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(std::vector<int> quadro);
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(std::vector<int> quadro);
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(std::vector<int> quadro);
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(std::vector<int> quadro);
+
+bool CheckParidadeQuadro(std::vector<int> quadro);
+
+int intXor(int numero0, int numero1);
+

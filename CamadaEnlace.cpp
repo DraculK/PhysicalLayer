@@ -90,6 +90,31 @@ vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int
 
     return quadro_end;
 }
+
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBits(vector<int> quadro){
+  bitset<8> flag = 0x7E;
+  int contador = 0;
+  int tamanho = (int) quadro.size();
+
+  for(int i = 0; i < tamanho; i++) {
+    if(quadro[i]==0){
+      contador = 0;
+    }
+    else contador ++;
+
+    //insere 0 em sequenciais de uns
+    if(contador == 5) {
+      quadro.insert(quadro.begin() + i+1,0);
+      contador = 0;
+    }
+  }
+
+  for(int i = 7; i >= 0;i--){
+    quadro.push_back(flag[i]);
+    quadro.insert(quadro.begin(), flag[i]);
+  }
+  return quadro;
+}
   
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;

@@ -175,6 +175,42 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<i
   return quadroFinal;
 }
 
+vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBits(vector<int> quadro){
+  vector<int> quadro_final;
+  bitset<8> first_byte, last_byte;
+  int tamanho = quadro.size();
+  int contador = 0;
+  int loop_inicio = 0;
+  int loop_final = tamanho;
+
+  //Pega os primeiro e último byte do quadro
+  for(int i = 0; i < 8; i++) {
+    first_byte[i] = quadro[i];
+    last_byte[i] = quadro[tamanho + i - 8];
+  }
+
+  //Verifica se os primeiro e útlimo bytes tÊm uma flag e caso tenham, não insere ele no quadro desenquadrado
+  if(first_byte == 0x7E) {
+    loop_inicio = 8;
+  }
+  if(last_byte == 0x7E) {
+    loop_final = tamanho - 8;
+  }
+
+  for(int i = loop_inicio; i < loop_final; i++) {
+    if(quadro[i] == 1) {
+      contador++;
+      quadro_final.push_back(quadro[i]);
+    }else{
+      if(contador < 5) {
+        quadro_final.push_back(quadro[i]);
+      }
+        contador = 0;
+    }
+  }
+  return quadro_final;
+}
+
 vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
   return quadroFinal;

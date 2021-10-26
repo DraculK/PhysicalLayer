@@ -14,6 +14,8 @@ void InsereByte(vector<int> *vetor, unsigned char byte);
 
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int>);
 
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBits(vector<int>);
+
 //RECEPÇÃO
 void CamadaEnlaceDadosReceptora(vector<int>); //feito.
 
@@ -24,6 +26,11 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int>);
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vector<int>);
+
+
+vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBits(vector<int>);
+
+vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int>);
 

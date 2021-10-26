@@ -90,6 +90,31 @@ vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int
 
     return quadro_end;
 }
+
+vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBits(vector<int> quadro){
+  bitset<8> flag = 0x7E;
+  int contador = 0;
+  int tamanho = (int) quadro.size();
+
+  for(int i = 0; i < tamanho; i++) {
+    if(quadro[i]==0){
+      contador = 0;
+    }
+    else contador ++;
+
+    //insere 0 em sequenciais de uns
+    if(contador == 5) {
+      quadro.insert(quadro.begin() + i+1,0);
+      contador = 0;
+    }
+  }
+
+  for(int i = 7; i >= 0;i--){
+    quadro.push_back(flag[i]);
+    quadro.insert(quadro.begin(), flag[i]);
+  }
+  return quadro;
+}
   
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
@@ -166,6 +191,43 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<i
   vector<int> quadroFinal(quadro.begin() + 8, quadro.begin() + quadro.size());
   return quadroFinal;
 }
+
+vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBits(vector<int> quadro){
+  vector<int> quadro_final;
+  bitset<8> first_byte, last_byte;
+  int tamanho = quadro.size();
+  int contador = 0;
+  int loop_inicio = 0;
+  int loop_final = tamanho;
+
+  //Pega os primeiro e último byte do quadro
+  for(int i = 0; i < 8; i++) {
+    first_byte[i] = quadro[i];
+    last_byte[i] = quadro[tamanho + i - 8];
+  }
+
+  //Verifica se os primeiro e útlimo bytes tÊm uma flag e caso tenham, não insere ele no quadro desenquadrado
+  if(first_byte == 0x7E) {
+    loop_inicio = 8;
+  }
+  if(last_byte == 0x7E) {
+    loop_final = tamanho - 8;
+  }
+
+  for(int i = loop_inicio; i < loop_final; i++) {
+    if(quadro[i] == 1) {
+      contador++;
+      quadro_final.push_back(quadro[i]);
+    }else{
+      if(contador < 5) {
+        quadro_final.push_back(quadro[i]);
+      }
+        contador = 0;
+    }
+  }
+  return quadro_final;
+}
+
 
 vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
@@ -324,6 +386,27 @@ vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(vector<in
     }
   }
   return quadroFinal;
+}
+
+
+vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vector<int> quadro){
+  //auxiliar para manter o valor original
+  vector<int> auxQuadro = quadro;
+  //bit de paridade
+  int ultimoBit = auxQuadro.back();
+  //retira o último bit
+  auxQuadro.pop_back();
+  vector<int> semUltimoBit = auxQuadro;
+
+  if(CheckParidadeQuadro(semUltimoBit) && ultimoBit == 0){
+    //Par e último bit zero
+    return semUltimoBit;
+  }else if(!CheckParidadeQuadro(semUltimoBit) && ultimoBit == 1){
+    //Ímpar e último bit 1
+    return semUltimoBit;
+  }else{
+    return semUltimoBit;
+  }
 }
 
 std::vector<int> CamadaEnlaceDadosTransmissoraControleDeErroBitParidadeImpar(std::vector<int> quadro){

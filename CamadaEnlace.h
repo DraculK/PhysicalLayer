@@ -30,5 +30,3 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vector<int>);
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBits(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vector<int>);
-
-bool paridadeQuadro(vector<int> quadro);

@@ -30,3 +30,5 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int>
 int intXor(int, int);
 
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCRC(vector<int>);
+
+vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(vector<int>);

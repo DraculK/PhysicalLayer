@@ -226,3 +226,68 @@ vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCRC(vector<int> quadro){
   }
   return quadro;
 }
+
+vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(vector<int> quadro){
+  int tamanhoQuadro = quadro.size();
+  int tamanhoHamming = 0;
+  int i, j;
+  unsigned int mask = 0x80000000;
+  vector<int> quadroFinal;
+
+  // Verifica o número de bits necessários de dados contidos no quadro
+  // Lembrando que utilizamos potências de 2
+  for(i = 0; i < 32; i++) {
+    if(tamanhoQuadro & mask) {
+      tamanhoHamming = 32 - i;
+      break;
+    }
+    mask >>= 1;
+  }
+
+  tamanhoHamming += tamanhoQuadro;
+  mask = 0x80000000;
+
+  // O mesmo processo mas verificando para representar o tamanho de hamming
+  for(i = 0; i < 32; i++) {
+    if(tamanhoHamming & mask) {
+      tamanhoHamming = 32 - i;
+      break;
+    }
+    mask >>= 1;
+  }
+
+  // Criamos um vetor para hamming, utilizando os valores encontrados acima
+  vector<int> hamming(tamanhoHamming, 0x00000000);
+  int indiceQuadro = 0; // Variável auxiliar para salvar os indices
+
+  for(i = 1; i <= (tamanhoQuadro + tamanhoHamming); i++) {
+    mask = 0x00000001;
+    if((log2(i) - int(log2(i))) != 0) { // Veridica se o indice é potência de 2
+      // Verifica para quais bits de verificação o i-ésimo elemento contribui
+      for(j = 0; j < tamanhoHamming; j++) {
+        if(i & mask) {
+          // XOR do bit de dado
+          hamming[j] ^= quadro[indiceQuadro];
+        }
+        mask <<= 1;
+      }
+      indiceQuadro++;
+    }
+  }
+
+  indiceQuadro = 0;
+  j = 0;
+
+  // Criando quadro final (lembrando que inserimos nas potências de 2)
+  for(i = 1; i <= (tamanhoHamming); i++) {
+    if((log2(i) - int(log2(i))) != 0) {
+      quadroFinal.push_back(quadro[indiceQuadro]);
+      indiceQuadro++;
+    }
+    else{
+      quadroFinal.push_back(hamming[j]);
+      j++;
+    }
+  }
+  return quadroFinal;
+}

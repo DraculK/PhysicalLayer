@@ -325,3 +325,164 @@ vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(vector<in
   }
   return quadroFinal;
 }
+
+std::vector<int> CamadaEnlaceDadosTransmissoraControleDeErroBitParidadeImpar(std::vector<int> quadro){
+    if(CheckParidadeQuadro(quadro)) {
+      
+        quadro.push_back(1);
+    }else {
+    
+        quadro.push_back(0);
+    }
+
+    return quadro;
+}
+
+std::vector<int> CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(std::vector<int> quadro){
+    if(CheckParidadeQuadro(quadro)) {
+    
+        quadro.push_back(0);
+    }else {
+
+        quadro.push_back(1);
+    }
+   
+    return quadro;
+}
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(std::vector<int> quadro){
+    size_t j;
+    int i;
+    std::vector<int> dividendo_atual = quadro;
+    std::vector<int> resultado_tmp;
+    std::vector<int> Generator_code = {1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,0,1,1,1};
+
+    for(j = 33; j <= quadro.size(); j++){
+        for(i = 0; i < 33; i++){
+            if(dividendo_atual[0] == 1){
+              
+                resultado_tmp.push_back(intXor(dividendo_atual[i],Generator_code[i]));
+            }
+            
+            else{
+                resultado_tmp.push_back(intXor(dividendo_atual[i],0));
+            }
+        }
+        dividendo_atual = resultado_tmp;
+        resultado_tmp.clear();
+        dividendo_atual.erase(dividendo_atual.begin());
+
+        if(j != quadro.size()){
+            dividendo_atual.push_back(quadro.at(j));
+        }
+    }
+    for(j = 0; j < dividendo_atual.size(); j++){
+        if(dividendo_atual.at(j) == 1){
+            std::cout << "Divisão sem resto Zero, Erro!";
+        }
+    }
+
+    for(i = 0; i < 32; i++){
+        quadro.pop_back();
+    }
+    return quadro;
+}
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(std::vector<int> quadro){
+    int size = quadro.size();
+    int Tamanho_h;
+    bool bit_error = false;
+    unsigned int mask = 0x80000000;
+    std::vector<int> Resultado_quadro;
+    for(int i = 0; i < 32; i++) {
+        if(size & mask) {
+            Tamanho_h = 32 - i;
+            break;
+        }
+        mask >>= 1;
+    }
+    std::vector<int> hamming_code(Tamanho_h, 0x00000000);
+    std::vector<int> hamming_code_received(Tamanho_h, 0x00000000);
+
+    int k = 0;
+    for(int i = 1; i <= size; i++) {
+        mask = 0x00000001;
+      
+        if((log2(i) - int(log2(i))) != 0) {
+           
+            for(int j = 0; j < Tamanho_h; j++) {
+                
+                if(i & mask) {
+                   
+                    hamming_code[j] ^= quadro[i-1];
+                }
+                mask <<= 1;
+            }
+
+        }
+        else{
+            hamming_code_received[k] = quadro[i-1];
+            k++;
+        }
+    }
+    // Comparação entre nosso código de hamming inicial e o que foi gerado através do programa
+    std::vector<int> error;
+    for(int i = 0; i < Tamanho_h; i++) {
+        if(hamming_code_received[i] != hamming_code[i]) {
+            error.push_back(i);
+            bit_error = true;
+        }
+    }
+    if(bit_error) {
+        // Momento de identificar o bit gerador do erro
+        int bit = 0x00;
+        int mask2 = 0x01;
+        size_t i;
+        for(i = 0; i < error.size(); i++) {
+            bit |= (mask2 << error[i]);
+        }
+        // Correção do bit que gerou o erro!
+        quadro.at(bit-1) ^= 1;
+    }
+    // Remoção do código de hemming do quadro e criaçao de um novo quadro
+    for(int i = 1; i <= size; i++) {
+        if((log2(i) - int(log2(i))) != 0) {
+            Resultado_quadro.push_back(quadro.at(i - 1));
+        }
+    }
+    return Resultado_quadro;
+}
+
+
+bool CheckParidadeQuadro(std::vector<int> quadro){
+
+    size_t tamanho = quadro.size();
+    int contador = 0;
+
+    for (size_t i = 0; i < tamanho; i++) {
+        
+        if (quadro[i] == 1) {
+            contador++;
+        }
+    }
+    if(contador %2 == 0) {
+        return true;
+    }else {
+        return false;
+    }
+
+}
+
+
+int intXor(int numero0, int numero1){
+    // XoR de números inteiros
+    if (numero0 == 1 && numero1 == 0) {
+        return 1;
+    } else if (numero0 == 0 && numero1 == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
+
+
+}

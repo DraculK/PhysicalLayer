@@ -32,3 +32,16 @@ int intXor(int, int);
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCRC(vector<int>);
 
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(vector<int>);
+
+std::vector<int> CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(std::vector<int> quadro);
+
+std::vector<int> CamadaEnlaceDadosTransmissoraControleDeErroBitParidadeImpar(std::vector<int> quadro);
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(std::vector<int> quadro);
+
+std::vector<int> CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(std::vector<int> quadro);
+
+bool CheckParidadeQuadro(std::vector<int> quadro);
+
+int intXor(int numero0, int numero1);
+

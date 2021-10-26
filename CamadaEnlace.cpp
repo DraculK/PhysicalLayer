@@ -184,7 +184,7 @@ int intXor(int quadro, int aux){
   }
 }
 
-vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(vector<int> quadro){
+vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCRC(vector<int> quadro){
   vector<int> gerador = {1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1};
   vector<int> quadro = quadro;
   vector<int> quadroAtual;
@@ -202,7 +202,7 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(vector<int> quadro){
     for(i = 0; i < 33; i++){
       // Xor com polinomio gerador se if(true)
       if(quadroAtual[0] == 1){
-          quadroTemporario.push_back(intXor(quadroAtual[i],gerador[i]));
+        quadroTemporario.push_back(intXor(quadroAtual[i],gerador[i]));
       }
       // Xor com 0, se if(false)
       else{
@@ -219,7 +219,7 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(vector<int> quadro){
       quadroTemporario.push_back(quadro.at(len));
     }
   }
-        
+
   //Insere o CRC no quadro
   for(len = 0; len < quadroAtual.size(); len++){
     quadro.push_back(quadroAtual.at(len));

@@ -29,4 +29,4 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int>
 
 int intXor(int, int);
 
-vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(vector<int>);
+vector<int> CamadaEnlaceDadosTransmissoraControleDeErroCRC(vector<int>);

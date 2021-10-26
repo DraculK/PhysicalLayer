@@ -24,3 +24,5 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int>);
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<int>);
 
 vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(vector<int>);
+
+vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int>);

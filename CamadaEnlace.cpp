@@ -154,3 +154,23 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
   return quadroFinal;
 }
+
+vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int> quadro){
+  //auxiliar para manter o valor original
+  vector<int> auxQuadro = quadro;
+  //bit de paridade
+  int ultimoBit = auxQuadro.back();
+  //retira o último bit
+  auxQuadro.pop_back();
+  vector<int> semUltimoBit = auxQuadro;
+
+  if(!paridadeQuadro(semUltimoBit) && ultimoBit == 0){
+    //Par e último bit zero
+    return semUltimoBit;
+  }else if(paridadeQuadro(semUltimoBit) && ultimoBit == 1){
+    //Ímpar e último bit 1
+    return semUltimoBit;
+  }else{
+    return semUltimoBit;
+  }
+}

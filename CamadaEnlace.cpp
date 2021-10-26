@@ -174,3 +174,55 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int>
     return semUltimoBit;
   }
 }
+
+// Montando um XOR com quadroAtual e gerador
+int intXor(int quadro, int aux){
+  if (quadro == 1 && aux == 0 || quadro == 0 && aux == 1){
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+vector<int> CamadaEnlaceDadosReceptoraControleDeErroCRC(vector<int> quadro){
+  vector<int> gerador = {1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1};
+  vector<int> quadro = quadro;
+  vector<int> quadroAtual;
+  vector<int> quadroTemporario;
+  size_t len; // calcula o tamanho de len (len é uma variavel dinâmica)
+  int i;
+
+  // Inserindo os zeros necessários para montar o CRC
+  for(i = 0; i < 32; i++){
+    quadro.push_back(0);
+  }
+  quadroAtual = quadro;
+
+  for(len = 33; len <= quadro.size(); len++){
+    for(i = 0; i < 33; i++){
+      // Xor com polinomio gerador se if(true)
+      if(quadroAtual[0] == 1){
+          quadroTemporario.push_back(intXor(quadroAtual[i],gerador[i]));
+      }
+      // Xor com 0, se if(false)
+      else{
+        quadroTemporario.push_back(intXor(quadroAtual[i],0));
+      }
+    }
+    quadroAtual = quadroTemporario;
+    quadroTemporario.clear();
+    // Primeiro bit do quadro, não pe mais util
+    quadroTemporario.erase(quadroTemporario.begin());
+
+    // verifica se chegamos no final da divisão
+    if(len != quadro.size()){
+      quadroTemporario.push_back(quadro.at(len));
+    }
+  }
+        
+  //Insere o CRC no quadro
+  for(len = 0; len < quadroAtual.size(); len++){
+    quadro.push_back(quadroAtual.at(len));
+  }
+  return quadro;
+}

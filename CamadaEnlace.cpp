@@ -93,6 +93,23 @@ vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(vector<int
   
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
+  int tipoDeErro = 0;
+
+  switch(tipoDeErro){
+    case 0:
+      quadroFinal = CamadaEnlaceDadosTransmissoraControleDeErroBitParidadePar(quadro);
+      break;
+    case 1:
+      quadroFinal = CamadaEnlaceDadosTransmissoraControleDeErroBitParidadeImpar(quadro);
+      break;
+    case 2:
+      quadroFinal = CamadaEnlaceDadosTransmissoraControleDeErroCRC(quadro);
+      break;
+    case 3:
+      quadroFinal = CamadaEnlaceDadosTransmissoraControleDeErroCodigoDeHamming(quadro);
+      break;
+  }
+
   return quadroFinal;
 }
 
@@ -152,6 +169,23 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(vector<i
 
 vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
+  int tipoDeErro = 0;
+
+  switch(tipoDeErro){
+    case 0:
+      quadroFinal = CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(quadro);
+      break;
+    case 1:
+      quadroFinal = CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(quadro);
+      break;
+    case 2:
+      quadroFinal = CamadaEnlaceDadosReceptoraControleDeErroCRC(quadro);
+      break;
+    case 3:
+      quadroFinal = CamadaEnlaceDadosReceptoraControleDeErroCodigoDeHamming(quadro);
+      break;
+  }
+
   return quadroFinal;
 }
 

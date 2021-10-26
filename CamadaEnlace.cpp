@@ -211,25 +211,6 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBits(vector<int> qu
   return quadro_final;
 }
 
-bool paridadeQuadro(vector<int> quadro){
-  //retorna true com número par de bits
-  size_t tamanho = quadro.size();
-  int contador = 0;
-
-  for(size_t i=0; i < tamanho; i++){
-    //guarda os bits 1
-    if(quadro[i] == 1){
-      contador++;
-    }
-  }
-
-  //checa a paridade
-  if(contador % 2 == 0){
-    return true;
-  }else{
-    return false;
-  }
-}
 
 vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
@@ -245,10 +226,10 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(vector<int> q
   auxQuadro.pop_back();
   vector<int> semUltimoBit = auxQuadro;
 
-  if(paridadeQuadro(semUltimoBit) && ultimoBit == 0){
+  if(CheckParidadeQuadro(semUltimoBit) && ultimoBit == 0){
     //Par e último bit zero
     return semUltimoBit;
-  }else if(!paridadeQuadro(semUltimoBit) && ultimoBit == 1){
+  }else if(!CheckParidadeQuadro(semUltimoBit) && ultimoBit == 1){
     //Ímpar e último bit 1
     return semUltimoBit;
   }else{

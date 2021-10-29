@@ -128,9 +128,18 @@ void MeioDeComunicacao (vector<int> fluxoBrutoDeBits, int tipoDeCodificacao) {
 
   fluxoBrutoDeBitsPontoA = fluxoBrutoDeBits;
 
-	for(int i = 0; i< fluxoBrutoDeBitsPontoA.size(); i++){
-		fluxoBrutoDeBitsPontoB.push_back(fluxoBrutoDeBitsPontoA.at(i));
-	}
+	// for(int i = 0; i< fluxoBrutoDeBitsPontoA.size(); i++){
+	// 	fluxoBrutoDeBitsPontoB.push_back(fluxoBrutoDeBitsPontoA.at(i));
+	// }
+
+  int porcentagemDeErros = 0;
+  for(int i=0; i< fluxoBrutoDeBitsPontoA.size(); i++){
+    if((rand()%100)>= porcentagemDeErros){
+      fluxoBrutoDeBitsPontoB.push_back(fluxoBrutoDeBitsPontoA.at(i));
+    }else{
+      (fluxoBrutoDeBitsPontoA.at(i) == 0) ? fluxoBrutoDeBitsPontoB.push_back(1) : fluxoBrutoDeBitsPontoB.push_back(0);
+    }
+  }
   
 
 	CamadaFisicaReceptora(fluxoBrutoDeBitsPontoB, tipoDeCodificacao);

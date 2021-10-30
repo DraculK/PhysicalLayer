@@ -121,10 +121,6 @@ vector<int> CamadaFisicaTransmissoraCodificacaoBipolar(vector<int> quadro){
 void MeioDeComunicacao (vector<int> fluxoBrutoDeBits, int tipoDeCodificacao) {
 	vector<int> fluxoBrutoDeBitsPontoA;
 	vector<int> fluxoBrutoDeBitsPontoB;
-  // for(int i = 0; i< fluxoBrutoDeBits.size(); i++){
-  //   cout << fluxoBrutoDeBits[i];
-  // }
-  //   cout << "\n";
 
   fluxoBrutoDeBitsPontoA = fluxoBrutoDeBits;
 

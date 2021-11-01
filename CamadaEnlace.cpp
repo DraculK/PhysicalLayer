@@ -20,16 +20,22 @@ void CamadaEnlaceDadosReceptora(vector<int> quadro){
 vector<int> CamadaEnlaceDadosTransmissoraEnquadramento(vector<int> quadro){
   
   vector<int> quadroEnquadrado;
+  int tipoDeEnquadramento = 0; // Escolhe o tipo de enquadramento
 
-  quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
-  cout << "Contagem de caracteres: ";
-  for(int i = 0; i< quadroEnquadrado.size(); i++){
-    cout << quadroEnquadrado[i];
+  switch(tipoDeEnquadramento){
+    case 0:
+      quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoContagemDeCaracteres(quadro);
+      cout << "Contagem de caracteres: ";
+      break;
+    case 1:
+      quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
+      cout << "Inserção de bytes: ";
+      break;
+    case 2:
+      quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBits(quadro);
+      cout << "Inserção de bits: ";
+      break;
   }
-  cout << endl;
-  
-  quadroEnquadrado = CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBytes(quadro);
-  cout << "Inserção de bytes: ";
   for(int i = 0; i< quadroEnquadrado.size(); i++){
     cout << quadroEnquadrado[i];
   }
@@ -118,7 +124,7 @@ vector<int> CamadaEnlaceDadosTransmissoraEnquadramentoInsercaoDeBits(vector<int>
   
 vector<int> CamadaEnlaceDadosTransmissoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
-  int tipoDeErro = 0;
+  int tipoDeErro = 0; // Difinir o tipo de erro escolhido
 
   switch(tipoDeErro){
     case 0:
@@ -142,15 +148,21 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramento(vector<int> quadro){
   int tipoDeEnquadramento = 1;
   vector<int> quadroDesenquadrado;
 
-  quadroDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(quadro);
-  cout << "Contagem de caracteres: ";
-  for(int i = 0; i< quadroDesenquadrado.size(); i++){
-    cout << quadroDesenquadrado[i];
+  switch(tipoDeEnquadramento){
+    case 0:
+      quadroDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoContagemDeCaracteres(quadro);
+      cout << "Contagem de caracteres receptora: ";
+      break;
+    case 1:
+      quadroDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(quadro);
+      cout << "Inserção de bytes receptora: ";
+      break;
+    case 2:
+      quadroDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBits(quadro);
+      cout << "Inserção de bits receptora: ";
+      break;
   }
-  cout << endl;
   
-  quadroDesenquadrado = CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBytes(quadro);
-  cout << "Inserção de bytes: ";
   for(int i = 0; i< quadroDesenquadrado.size(); i++){
     cout << quadroDesenquadrado[i];
   }
@@ -231,7 +243,7 @@ vector<int> CamadaEnlaceDadosReceptoraEnquadramentoInsercaoDeBits(vector<int> qu
 
 vector<int> CamadaEnlaceDadosReceptoraControleDeErro(vector<int> quadro){
   vector<int> quadroFinal = quadro;
-  int tipoDeErro = 0;
+  int tipoDeErro = 0; // Difininando escolha do tipo de erro
 
   switch(tipoDeErro){
     case 0:
@@ -260,10 +272,10 @@ vector<int> CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(vector<int>
   auxQuadro.pop_back();
   vector<int> semUltimoBit = auxQuadro;
 
-  if(!paridadeQuadro(semUltimoBit) && ultimoBit == 0){
+  if(!CheckParidadeQuadro(semUltimoBit) && ultimoBit == 0){
     //Par e último bit zero
     return semUltimoBit;
-  }else if(paridadeQuadro(semUltimoBit) && ultimoBit == 1){
+  }else if(CheckParidadeQuadro(semUltimoBit) && ultimoBit == 1){
     //Ímpar e último bit 1
     return semUltimoBit;
   }else{
